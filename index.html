@@ -1,0 +1,1389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>GroMo AI Calling — Cut Costs. Scale Calls. Win More.</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+  // ── EmailJS config ──
+  const EJS_PUBLIC_KEY   = 'r6vd25JWkhx2Z_iYS';
+  const EJS_SERVICE_ID   = 'service_hpzm8mc';
+  const EJS_TEMPLATE_ID  = 'template_idso0hx';
+  (function(){ emailjs.init({ publicKey: EJS_PUBLIC_KEY }); })();
+</script>
+<style>
+/* ─── GROMO BRAND TOKENS (customer site accurate) ─── */
+:root {
+  --white:        #FFFFFF;
+  --off:          #F5F8F5;
+  --surface:      #EEF5EE;
+  --green:        #1DB954;   /* GroMo primary green */
+  --green-d:      #17A347;
+  --green-dd:     #0F8237;
+  --green-lt:     rgba(29,185,84,0.10);
+  --green-md:     rgba(29,185,84,0.18);
+  --green-border: rgba(29,185,84,0.22);
+  --navy:         #0A2240;   /* deep text */
+  --ink:          #1A2E1A;
+  --body:         #344D34;
+  --muted:        #6B866B;
+  --light-border: #DDE8DD;
+  --card-bg:      #FFFFFF;
+  --orange:       #F97316;
+  --orange-lt:    rgba(249,115,22,0.10);
+  --red:          #DC2626;
+  --red-lt:       rgba(220,38,38,0.08);
+  --shadow-sm:    0 2px 12px rgba(10,34,64,0.08);
+  --shadow-md:    0 6px 32px rgba(10,34,64,0.10);
+  --shadow-lg:    0 16px 56px rgba(10,34,64,0.12);
+  --font:         'Plus Jakarta Sans', sans-serif;
+  --radius:       14px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--font); background: var(--white); color: var(--ink); overflow-x: hidden; line-height: 1.6; }
+
+/* ══════════════════════════════
+   NAV — clean white like gromo.in/customer
+══════════════════════════════ */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 300;
+  height: 68px; background: rgba(255,255,255,0.96);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--light-border);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 56px;
+  box-shadow: 0 2px 16px rgba(10,34,64,0.06);
+}
+.nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.nav-logo img { height: 32px; object-fit: contain; }
+.ai-badge {
+  background: var(--green); color: #fff;
+  font-size: 10px; font-weight: 700; padding: 3px 9px;
+  border-radius: 20px; letter-spacing: .8px; text-transform: uppercase;
+}
+.nav-links { display: flex; gap: 36px; list-style: none; }
+.nav-links a { color: var(--muted); font-size: 14px; font-weight: 500; text-decoration: none; transition: color .2s; }
+.nav-links a:hover { color: var(--green); }
+
+.btn-primary {
+  background: var(--green); color: #fff;
+  font-family: var(--font); font-weight: 700; font-size: 14px;
+  padding: 10px 22px; border-radius: 8px; border: none; cursor: pointer;
+  text-decoration: none; transition: all .2s; display: inline-flex; align-items: center; gap: 6px;
+}
+.btn-primary:hover { background: var(--green-d); box-shadow: 0 6px 20px rgba(29,185,84,.3); transform: translateY(-1px); }
+.btn-secondary {
+  background: transparent; color: var(--green);
+  font-family: var(--font); font-weight: 700; font-size: 14px;
+  padding: 10px 22px; border-radius: 8px; border: 2px solid var(--green-border);
+  cursor: pointer; text-decoration: none; transition: all .2s;
+  display: inline-flex; align-items: center; gap: 6px;
+}
+.btn-secondary:hover { background: var(--green-lt); border-color: var(--green); }
+
+/* ══════════════════════════════
+   HERO
+══════════════════════════════ */
+.hero {
+  min-height: 100vh;
+  background: linear-gradient(160deg, #F0FAF2 0%, #E8F5E9 40%, #FFFFFF 100%);
+  display: flex; align-items: center; justify-content: center;
+  text-align: center; padding: 130px 24px 80px;
+  position: relative; overflow: hidden;
+}
+/* decorative blobs */
+.hero::before {
+  content: '';
+  position: absolute; border-radius: 50%; pointer-events: none;
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(29,185,84,0.10) 0%, transparent 70%);
+  top: -100px; right: -100px;
+}
+.hero::after {
+  content: '';
+  position: absolute; border-radius: 50%; pointer-events: none;
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(29,185,84,0.07) 0%, transparent 70%);
+  bottom: 0; left: -80px;
+}
+.hero-inner { position: relative; z-index: 2; max-width: 840px; animation: fadeUp .8s ease both; }
+@keyframes fadeUp { from{opacity:0;transform:translateY(28px)} to{opacity:1;transform:translateY(0)} }
+
+.pill {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--green-lt); border: 1px solid var(--green-border);
+  border-radius: 100px; padding: 6px 18px; margin-bottom: 28px;
+  font-size: 12px; font-weight: 600; color: var(--green-d); letter-spacing: .6px; text-transform: uppercase;
+}
+.blink { width: 7px; height: 7px; border-radius: 50%; background: var(--green); animation: blink 1.5s infinite; }
+@keyframes blink { 0%,100%{opacity:1}50%{opacity:.2} }
+
+h1 {
+  font-size: clamp(36px, 5.5vw, 66px); font-weight: 800;
+  line-height: 1.07; letter-spacing: -2px; color: var(--ink); margin-bottom: 24px;
+}
+h1 .green { color: var(--green); }
+h1 .orange { color: var(--orange); }
+
+.hero-sub {
+  font-size: 18px; color: var(--muted); line-height: 1.75;
+  max-width: 560px; margin: 0 auto 42px; font-weight: 400;
+}
+.hero-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+.hero-btns .btn-primary { font-size: 16px; padding: 14px 30px; }
+.hero-btns .btn-secondary { font-size: 16px; padding: 14px 30px; }
+
+/* vs badge */
+.vs-row {
+  display: inline-flex; align-items: center; gap: 18px; margin-top: 36px;
+  background: #fff; border: 1px solid var(--light-border); border-radius: 12px;
+  padding: 14px 28px; box-shadow: var(--shadow-sm);
+}
+.vs-chip { font-size: 14px; font-weight: 700; }
+.vs-chip.red  { color: var(--red); }
+.vs-chip.grn  { color: var(--green-d); }
+.vs-sep { font-size: 13px; color: var(--muted); font-weight: 500; }
+.vs-arrow { font-size: 18px; color: var(--green); }
+
+/* ══════════════════════════════
+   GREEN STATS BAND (GroMo-style)
+══════════════════════════════ */
+.stats-band {
+  background: var(--green);
+  padding: 22px 56px;
+  display: flex; align-items: center; justify-content: center;
+  gap: 0; flex-wrap: wrap;
+}
+.sb-item {
+  text-align: center; flex: 1; min-width: 150px;
+  padding: 8px 20px; border-right: 1px solid rgba(255,255,255,0.25);
+}
+.sb-item:last-child { border-right: none; }
+.sb-num { font-size: 26px; font-weight: 800; color: #fff; letter-spacing: -1px; display: block; line-height: 1.2; }
+.sb-label { font-size: 12px; color: rgba(255,255,255,.8); font-weight: 500; }
+
+/* ══════════════════════════════
+   SHARED LAYOUT
+══════════════════════════════ */
+.section { padding: 88px 56px; max-width: 1180px; margin: 0 auto; }
+.stag { font-size: 11px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: var(--green-d); display: block; margin-bottom: 12px; }
+h2 { font-size: clamp(28px, 3.5vw, 44px); font-weight: 800; letter-spacing: -1.5px; line-height: 1.1; color: var(--ink); margin-bottom: 12px; }
+h2 .green { color: var(--green); }
+h2 .orange { color: var(--orange); }
+.sub { font-size: 16px; color: var(--muted); line-height: 1.75; max-width: 500px; margin-bottom: 52px; }
+.divider { height: 1px; background: var(--light-border); margin: 0 56px; }
+
+/* ══════════════════════════════
+   FEATURES
+══════════════════════════════ */
+.feat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.feat-card {
+  background: var(--card-bg); border: 1.5px solid var(--light-border);
+  border-radius: var(--radius); padding: 28px 24px;
+  transition: all .3s; box-shadow: var(--shadow-sm);
+}
+.feat-card:hover {
+  border-color: var(--green); transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(29,185,84,0.12);
+}
+.fi { font-size: 26px; margin-bottom: 14px; display: block; }
+.feat-card h3 { font-size: 16px; font-weight: 700; color: var(--ink); margin-bottom: 8px; }
+.feat-card p { font-size: 13px; color: var(--muted); line-height: 1.65; }
+
+/* key stats below features */
+.kpi-row {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 0; margin-top: 40px;
+  border: 1.5px solid var(--light-border); border-radius: var(--radius);
+  overflow: hidden; box-shadow: var(--shadow-sm);
+}
+.kpi-cell {
+  padding: 28px 20px; text-align: center;
+  border-right: 1.5px solid var(--light-border);
+  background: #fff;
+}
+.kpi-cell:last-child { border-right: none; }
+.kpi-big { font-size: 36px; font-weight: 800; color: var(--green); letter-spacing: -1.5px; line-height: 1; display: block; margin-bottom: 6px; }
+.kpi-label { font-size: 12px; color: var(--muted); line-height: 1.4; }
+
+/* ══════════════════════════════
+   CALL DEMO
+══════════════════════════════ */
+.demo-bg { background: var(--off); border-top: 1.5px solid var(--light-border); border-bottom: 1.5px solid var(--light-border); }
+.demo-inner { max-width: 1180px; margin: 0 auto; padding: 88px 56px; }
+.demo-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; }
+
+/* audio cards */
+.audio-list { display: flex; flex-direction: column; gap: 12px; margin-top: 32px; }
+.audio-card {
+  background: #fff; border: 1.5px solid var(--light-border); border-radius: 12px;
+  padding: 16px 18px; display: flex; align-items: center; gap: 14px;
+  transition: border-color .2s, box-shadow .2s; cursor: pointer;
+}
+.audio-card:hover { border-color: var(--green); box-shadow: 0 4px 20px rgba(29,185,84,.10); }
+.audio-card.active { border-color: var(--green); background: var(--green-lt); }
+.play-btn {
+  width: 40px; height: 40px; border-radius: 50%;
+  background: var(--green); color: #fff; border: none;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; flex-shrink: 0; transition: all .2s;
+}
+.play-btn:hover { background: var(--green-d); box-shadow: 0 4px 14px rgba(29,185,84,.35); transform: scale(1.06); }
+.play-btn svg { width: 14px; height: 14px; fill: #fff; }
+.play-btn.playing svg.icon-play { display: none; }
+.play-btn.playing svg.icon-pause { display: block !important; }
+.play-btn svg.icon-pause { display: none; }
+.am { flex: 1; min-width: 0; }
+.am-title { font-size: 13px; font-weight: 700; color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.am-sub { font-size: 11px; color: var(--muted); margin-top: 2px; }
+.waveform { display: flex; align-items: center; gap: 2px; height: 24px; flex: 1; }
+.waveform .b { width: 3px; border-radius: 2px; background: #D4E8D4; transition: background .1s, height .1s; }
+.audio-card.active .waveform .b { background: rgba(29,185,84,.35); }
+.waveform .b.lit { background: var(--green) !important; }
+.atime { font-size: 11px; color: var(--muted); white-space: nowrap; }
+
+/* right: call box */
+.call-box {
+  background: #fff; border: 1.5px solid var(--light-border);
+  border-radius: 20px; padding: 36px 32px; text-align: center;
+  box-shadow: var(--shadow-md); position: sticky; top: 90px;
+}
+.phone-ring {
+  width: 72px; height: 72px; border-radius: 50%;
+  background: var(--green-lt); border: 2px solid var(--green-border);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 28px; margin: 0 auto 18px;
+  animation: ripple 2.5s ease-in-out infinite;
+}
+@keyframes ripple { 0%,100%{box-shadow:0 0 0 0 rgba(29,185,84,.25)}50%{box-shadow:0 0 0 18px rgba(29,185,84,0)} }
+.call-box h3 { font-size: 20px; font-weight: 800; color: var(--ink); margin-bottom: 8px; }
+.call-box p { font-size: 14px; color: var(--muted); margin-bottom: 22px; line-height: 1.65; }
+.phone-num { font-size: 28px; font-weight: 800; color: var(--green-d); letter-spacing: 1px; display: block; margin-bottom: 22px; }
+.call-box .btn-primary { width: 100%; justify-content: center; font-size: 15px; padding: 13px; }
+.call-box .btn-secondary { width: 100%; justify-content: center; font-size: 14px; padding: 11px; margin-top: 10px; }
+.call-steps { margin-top: 22px; display: flex; flex-direction: column; gap: 10px; text-align: left; }
+.cs { display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--muted); }
+.cs-num { width: 22px; height: 22px; border-radius: 50%; border: 1.5px solid var(--green-border); font-size: 10px; font-weight: 800; color: var(--green-d); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.upload-note {
+  margin-top: 18px; background: var(--off); border-radius: 8px; padding: 10px 14px;
+  font-size: 11px; color: var(--muted); line-height: 1.6; text-align: left;
+}
+.upload-note strong { color: var(--green-d); }
+
+/* ══════════════════════════════
+   CALCULATOR — EMI STYLE
+══════════════════════════════ */
+.calc-bg { background: var(--white); }
+.calc-inner { max-width: 1180px; margin: 0 auto; padding: 88px 56px; }
+.calc-header { margin-bottom: 40px; }
+.calc-header h2 { color: var(--ink); }
+.calc-header .sub { margin-bottom: 0; }
+
+/* Main card */
+.calc-card {
+  background: #fff; border-radius: 20px;
+  box-shadow: 0 4px 48px rgba(10,34,64,.10);
+  border: 1.5px solid var(--light-border);
+  display: grid; grid-template-columns: 1.1fr 1fr; overflow: hidden;
+}
+
+/* ── Left: Inputs ── */
+.ci { padding: 44px; border-right: 1.5px solid var(--light-border); }
+.ci-head {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 36px;
+}
+.ci-head h3 { font-size: 18px; font-weight: 700; color: var(--ink); }
+.ci-head .badge {
+  background: var(--green-lt); color: var(--green-d);
+  font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 6px; letter-spacing: .5px;
+}
+
+/* slider group */
+.sg { margin-bottom: 32px; }
+.sg-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+.sg-label { font-size: 13px; font-weight: 600; color: #4A6A4A; }
+.sg-val-wrap { display: flex; align-items: stretch; }
+.sg-input {
+  width: 90px; text-align: right;
+  font-size: 15px; font-weight: 700; color: var(--ink); font-family: var(--font);
+  background: var(--off); border: 1.5px solid #CCDDCC;
+  border-right: none; border-radius: 7px 0 0 7px;
+  padding: 6px 10px; outline: none; transition: border-color .2s;
+}
+.sg-input:focus { border-color: var(--green); background: #fff; z-index: 1; position: relative; }
+.sg-unit {
+  background: #EEF5EE; border: 1.5px solid #CCDDCC;
+  border-radius: 0 7px 7px 0; padding: 6px 10px;
+  font-size: 11px; font-weight: 700; color: var(--muted); white-space: nowrap;
+  display: flex; align-items: center;
+}
+/* slider */
+.sl-track { position: relative; margin: 4px 0 4px; height: 6px; }
+.sl-bg { position: absolute; inset: 0; border-radius: 10px; background: #DDE8DD; }
+.sl-fill { position: absolute; top: 0; left: 0; height: 100%; border-radius: 10px; background: linear-gradient(90deg, var(--green-dd), var(--green)); }
+input[type=range] {
+  -webkit-appearance: none; appearance: none;
+  position: absolute; inset: 0; width: 100%; height: 6px;
+  background: transparent; outline: none; cursor: pointer; z-index: 2;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none; width: 20px; height: 20px; border-radius: 50%;
+  background: #fff; border: 2.5px solid var(--green); cursor: grab;
+  box-shadow: 0 2px 8px rgba(29,185,84,.25); transition: box-shadow .15s;
+}
+input[type=range]::-webkit-slider-thumb:active { cursor: grabbing; box-shadow: 0 2px 14px rgba(29,185,84,.5); }
+input[type=range]::-moz-range-thumb { width: 20px; height: 20px; border-radius: 50%; background: #fff; border: 2.5px solid var(--green); cursor: grab; }
+.sl-limits { display: flex; justify-content: space-between; margin-top: 5px; }
+.sl-limits span { font-size: 11px; color: #A5BCA5; }
+
+/* formula */
+.formula {
+  background: #F5FAF5; border: 1.5px solid #DDE8DD;
+  border-radius: 10px; padding: 16px 18px; margin-top: 8px;
+  font-size: 12px; color: #5A7A5A; line-height: 2; font-family: 'Courier New', monospace;
+}
+.formula .fv  { color: var(--green-d); font-weight: 700; }
+.formula .fv2 { color: var(--red); font-weight: 700; }
+.formula strong { font-family: var(--font); font-size: 11px; color: #4A6A4A; }
+.disclaimer { font-size: 11px; color: #96AE96; margin-top: 10px; line-height: 1.6; }
+
+/* ── Right: Results ── */
+.cr { padding: 44px 36px; background: #FAFCFA; }
+.cr h3 { font-size: 16px; font-weight: 700; color: var(--ink); margin-bottom: 22px; }
+
+/* donut */
+.chart-wrap { position: relative; width: 164px; height: 164px; margin: 0 auto 18px; }
+canvas#donut { display: block; }
+.chart-mid {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+  text-align: center; pointer-events: none;
+}
+.chart-mid .cpct { font-size: 22px; font-weight: 800; color: var(--ink); line-height: 1; }
+.chart-mid .clbl { font-size: 10px; color: var(--muted); font-weight: 500; margin-top: 2px; }
+
+.leg { display: flex; gap: 16px; justify-content: center; margin-bottom: 20px; }
+.leg-i { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--muted); }
+.ld { width: 10px; height: 10px; border-radius: 50%; }
+.ld.g { background: var(--green); }
+.ld.r { background: var(--red); }
+
+/* result rows */
+.rb {
+  border-radius: 10px; padding: 14px 16px; margin-bottom: 10px;
+  display: flex; justify-content: space-between; align-items: center; border: 1.5px solid;
+}
+.rb.g { background: rgba(29,185,84,.06); border-color: rgba(29,185,84,.2); }
+.rb.r { background: rgba(220,38,38,.06); border-color: rgba(220,38,38,.18); }
+.rb-lft .rb-tag { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .8px; margin-bottom: 3px; }
+.rb.g .rb-tag { color: var(--green-d); }
+.rb.r .rb-tag { color: var(--red); }
+.rb-lft .rb-note { font-size: 11px; color: var(--muted); }
+.rb-amt { font-size: 20px; font-weight: 800; color: var(--ink); letter-spacing: -.5px; }
+.rb-amt .rs { font-size: 14px; font-weight: 600; opacity: .55; }
+
+/* savings box */
+.sav-box {
+  background: linear-gradient(135deg, rgba(29,185,84,.08), rgba(29,185,84,.04));
+  border: 2px solid rgba(29,185,84,.22); border-radius: 12px;
+  padding: 18px; text-align: center; margin-bottom: 16px;
+}
+.sav-tag { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--green-d); margin-bottom: 6px; }
+.sav-big { font-size: 32px; font-weight: 800; color: var(--ink); letter-spacing: -1.5px; line-height: 1; margin-bottom: 4px; }
+.sav-note { font-size: 12px; color: var(--muted); }
+.sav-note strong { color: var(--green-d); font-weight: 700; }
+
+.cta-calc { display: flex; flex-direction: column; gap: 8px; }
+.cta-calc .btn-primary { justify-content: center; font-size: 14px; padding: 12px; }
+.cta-calc .btn-secondary { justify-content: center; font-size: 13px; padding: 10px; }
+
+/* ══════════════════════════════
+   HOW IT WORKS
+══════════════════════════════ */
+.how-bg { background: var(--off); border-top: 1.5px solid var(--light-border); }
+.steps-row { display: grid; grid-template-columns: repeat(4,1fr); gap: 0; position: relative; margin-top: 48px; }
+.steps-row::before { content: ''; position: absolute; top: 27px; left: 12.5%; right: 12.5%; height: 1.5px; background: var(--light-border); }
+.step { padding: 0 14px; text-align: center; }
+.s-circle {
+  width: 54px; height: 54px; border-radius: 50%;
+  background: #fff; border: 2px solid var(--green-border);
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 18px; font-size: 16px; font-weight: 800; color: var(--green-d);
+  position: relative; z-index: 1; box-shadow: var(--shadow-sm);
+}
+.step h4 { font-size: 14px; font-weight: 700; color: var(--ink); margin-bottom: 8px; }
+.step p  { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+/* ══════════════════════════════
+   TESTIMONIALS
+══════════════════════════════ */
+.testi-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; margin-top: 48px; }
+.tcard {
+  background: #fff; border: 1.5px solid var(--light-border); border-radius: 14px; padding: 28px;
+  transition: all .3s; box-shadow: var(--shadow-sm);
+}
+.tcard:hover { border-color: var(--green); box-shadow: 0 8px 32px rgba(29,185,84,.10); }
+.stars { color: #F59E0B; font-size: 13px; letter-spacing: 2px; margin-bottom: 12px; }
+.tcard .qt { font-size: 14px; color: var(--body); line-height: 1.75; margin-bottom: 18px; font-weight: 400; font-style: italic; }
+.tfoot { display: flex; align-items: center; gap: 12px; }
+.av {
+  width: 38px; height: 38px; border-radius: 50%;
+  background: var(--green-lt); border: 2px solid var(--green-border);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px; font-weight: 800; color: var(--green-d); flex-shrink: 0;
+}
+.av-name { font-size: 13px; font-weight: 700; color: var(--ink); }
+.av-role { font-size: 11px; color: var(--muted); }
+
+/* ══════════════════════════════
+   CTA BANNER
+══════════════════════════════ */
+.cta-section { padding: 0 56px 88px; max-width: 1180px; margin: 0 auto; }
+.cta-box {
+  background: var(--green); border-radius: 24px; padding: 72px;
+  text-align: center; position: relative; overflow: hidden;
+}
+.cta-box::before {
+  content: ''; position: absolute; border-radius: 50%; pointer-events: none;
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(255,255,255,.08) 0%, transparent 70%);
+  top: 50%; left: 50%; transform: translate(-50%,-50%);
+}
+.cta-box h2 { color: #fff; position: relative; z-index:1; margin-bottom: 12px; letter-spacing:-1.5px; }
+.cta-box p  { color: rgba(255,255,255,.82); font-size: 16px; margin-bottom: 36px; position: relative; z-index:1; }
+.cta-box .btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; position: relative; z-index:1; }
+.btn-white {
+  background: #fff; color: var(--green-d); font-family: var(--font); font-weight: 800;
+  font-size: 15px; padding: 13px 32px; border-radius: 9px; border: none;
+  cursor: pointer; text-decoration: none; transition: all .2s;
+  display: inline-flex; align-items: center; gap: 6px;
+}
+.btn-white:hover { background: #F0FAF2; transform: translateY(-1px); box-shadow: 0 8px 28px rgba(0,0,0,.15); }
+.btn-white-outline {
+  background: transparent; color: #fff; font-family: var(--font); font-weight: 700;
+  font-size: 15px; padding: 13px 32px; border-radius: 9px; border: 2px solid rgba(255,255,255,.5);
+  cursor: pointer; text-decoration: none; transition: all .2s;
+  display: inline-flex; align-items: center; gap: 6px;
+}
+.btn-white-outline:hover { border-color: #fff; background: rgba(255,255,255,.1); }
+
+/* ══════════════════════════════
+   FOOTER
+══════════════════════════════ */
+footer {
+  border-top: 1.5px solid var(--light-border);
+  padding: 36px 56px; display: flex; justify-content: space-between;
+  align-items: center; flex-wrap: wrap; gap: 16px;
+}
+footer img { height: 28px; object-fit: contain; }
+.foot-copy { font-size: 13px; color: var(--muted); margin-top: 4px; }
+.foot-links { display: flex; gap: 24px; }
+.foot-links a { font-size: 13px; color: var(--muted); text-decoration: none; transition: color .2s; }
+.foot-links a:hover { color: var(--green); }
+
+/* ══════════════════════════════
+   SCROLL REVEAL
+══════════════════════════════ */
+.r { opacity:1; transform:translateY(0); transition: opacity .55s ease, transform .55s ease; }
+.r.in { opacity:1; transform:translateY(0); }
+
+/* ══════════════════════════════
+   RESPONSIVE
+══════════════════════════════ */
+/* ══════════════════════════════
+   RESPONSIVE — TABLET
+══════════════════════════════ */
+@media(max-width:960px){
+  nav { padding: 0 20px; }
+  .nav-links { display: none; }
+  .section, .calc-inner, .demo-inner { padding: 60px 20px; }
+  .stats-band { padding: 16px 20px; }
+  .feat-grid { grid-template-columns: 1fr 1fr; }
+  .kpi-row { grid-template-columns: repeat(2,1fr); }
+  .kpi-cell:nth-child(2) { border-right: none; }
+  .kpi-cell:nth-child(3) { border-top: 1.5px solid var(--light-border); }
+  .kpi-cell:nth-child(4) { border-top: 1.5px solid var(--light-border); border-right: none; }
+  .demo-layout { grid-template-columns: 1fr; }
+  .calc-card { grid-template-columns: 1fr; }
+  .ci { border-right: none; border-bottom: 1.5px solid var(--light-border); }
+  .steps-row { grid-template-columns: 1fr 1fr; gap: 28px; }
+  .steps-row::before { display: none; }
+  .testi-grid { grid-template-columns: 1fr 1fr; }
+  .cta-section { padding: 0 20px 60px; }
+  .cta-box { padding: 44px 24px; }
+  .divider { margin: 0 20px; }
+  footer { padding: 32px 20px; flex-direction: column; text-align: center; }
+  .foot-links { justify-content: center; }
+}
+
+/* ══════════════════════════════
+   RESPONSIVE — MOBILE
+══════════════════════════════ */
+@media(max-width:580px){
+  /* Nav */
+  nav { padding: 0 16px; height: 60px; }
+  .ai-badge { display: none; }
+  .nav-logo img { height: 26px; }
+  nav > div { gap: 8px; }
+  nav > div .btn-secondary { display: none; }
+  nav > div .btn-primary { display: none; }
+  #hamburger { display: flex !important; }
+  .nav-links {
+    display: none;
+    position: fixed; top: 60px; left: 0; right: 0;
+    background: #fff; border-bottom: 1px solid var(--light-border);
+    flex-direction: column; gap: 0; padding: 8px 0;
+    box-shadow: 0 8px 24px rgba(10,34,64,0.10); z-index: 299;
+  }
+  .nav-links.open { display: flex; }
+  .nav-links li { border-bottom: 1px solid var(--light-border); }
+  .nav-links a { display: block; padding: 14px 20px; font-size: 15px; color: var(--ink); font-weight: 600; }
+
+  /* Hero */
+  .hero { padding: 100px 16px 60px; text-align: center; }
+  h1 { font-size: 32px; letter-spacing: -1px; line-height: 1.12; margin-bottom: 18px; }
+  .hero-sub { font-size: 15px; margin-bottom: 28px; }
+  .hero-btns { flex-direction: column; gap: 10px; }
+  .hero-btns .btn-primary,
+  .hero-btns .btn-secondary { font-size: 15px; padding: 13px 20px; width: 100%; justify-content: center; }
+  .pill { font-size: 11px; padding: 5px 14px; }
+
+  /* Sections */
+  .section, .calc-inner, .demo-inner { padding: 48px 16px; }
+  h2 { font-size: 26px; letter-spacing: -0.8px; }
+  .sub { font-size: 14px; }
+  .stag { font-size: 10px; }
+
+  /* Features */
+  .feat-grid { grid-template-columns: 1fr; gap: 12px; }
+  .feat-card { padding: 22px 18px; }
+
+  /* KPI */
+  .kpi-row { grid-template-columns: 1fr 1fr; }
+  .kpi-big { font-size: 28px; }
+  .kpi-cell { padding: 20px 12px; }
+
+  /* Demo audio cards */
+  .audio-card { padding: 12px 14px; gap: 10px; }
+  .am-title { font-size: 12px; }
+  .am-sub { font-size: 10px; }
+  .waveform { display: none; }
+
+  /* Call box */
+  .call-box { padding: 28px 20px; }
+  .call-box h3 { font-size: 18px; }
+  .phone-num { font-size: 22px; }
+
+  /* Calculator */
+  .calc-card { grid-template-columns: 1fr; border-radius: 14px; }
+  .ci { padding: 28px 20px; }
+  .cr { padding: 28px 20px; }
+  .ci-head h3 { font-size: 15px; }
+  .sg { margin-bottom: 24px; }
+  .sg-label { font-size: 12px; }
+  .sg-input { width: 72px; font-size: 13px; }
+  .sav-big { font-size: 26px; }
+  .rb-amt { font-size: 17px; }
+  .formula { font-size: 11px; line-height: 1.9; }
+  .chart-wrap { width: 140px; height: 140px; }
+
+  /* How it works */
+  .steps-row { grid-template-columns: 1fr; gap: 24px; }
+  .step { padding: 0 8px; }
+
+  /* Testimonials */
+  .testi-grid { grid-template-columns: 1fr; gap: 12px; }
+  .tcard { padding: 22px 18px; }
+  .tcard .qt { font-size: 13px; }
+
+  /* CTA */
+  .cta-section { padding: 0 16px 48px; }
+  .cta-box { padding: 36px 20px; border-radius: 16px; }
+  .cta-box h2 { font-size: 22px; letter-spacing: -0.5px; margin-bottom: 10px; }
+  .cta-box p { font-size: 14px; margin-bottom: 24px; }
+  .cta-box .btns { flex-direction: column; gap: 10px; }
+  .btn-white, .btn-white-outline { width: 100%; justify-content: center; font-size: 14px; padding: 12px 20px; }
+
+  /* Footer */
+  footer { padding: 28px 16px; flex-direction: column; gap: 12px; text-align: center; }
+  .foot-copy { font-size: 11px; }
+  .foot-links { flex-wrap: wrap; justify-content: center; gap: 16px; }
+
+  /* Booking modal */
+  #bookingModal { padding: 16px 10px; }
+  #bookingModal > div { border-radius: 16px; }
+  #bookingModal > div > div:first-child { padding: 22px 20px; }
+  #bookingBody { padding: 20px 16px; }
+  #datePicker { grid-template-columns: repeat(2,1fr); }
+  #slotPicker { grid-template-columns: repeat(3,1fr); }
+}
+/* Admin-only elements — hidden by default, shown via ?admin=gromo2026 */
+.admin-only { display: none !important; }
+.admin-mode .admin-only { display: flex !important; }
+</style>
+</head>
+<body>
+
+<!-- ══ NAV ══ -->
+<nav>
+  <a href="https://gromo.in" class="nav-logo">
+    <img src="https://gromo.in/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FgromoLogo.b40b1e45.webp&w=256&q=75" alt="GroMo" />
+    <span class="ai-badge">AI Calling</span>
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#features" onclick="closeNav()">Features</a></li>
+    <li><a href="#demo" onclick="closeNav()">Hear the AI</a></li>
+    <li><a href="#calculator" onclick="closeNav()">ROI Calculator</a></li>
+    <li><a href="#how" onclick="closeNav()">How It Works</a></li>
+  </ul>
+  <div style="display:flex;gap:10px;align-items:center;">
+    <a href="#demo"       class="btn-secondary" style="font-size:13px;padding:9px 18px;">▶ Hear AI Call</a>
+    <a href="#calculator" class="btn-primary"   style="font-size:13px;padding:9px 18px;">Calculate Savings →</a>
+    <button id="hamburger" onclick="toggleNav()" style="display:none;background:none;border:none;cursor:pointer;padding:4px;flex-direction:column;gap:5px;align-items:center;justify-content:center;">
+      <span style="display:block;width:22px;height:2px;background:var(--ink);border-radius:2px;transition:all .2s;"></span>
+      <span style="display:block;width:22px;height:2px;background:var(--ink);border-radius:2px;transition:all .2s;"></span>
+      <span style="display:block;width:22px;height:2px;background:var(--ink);border-radius:2px;transition:all .2s;"></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ══ HERO ══ -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="pill"><span class="blink"></span>Now Live — GroMo AI Voice Calling</div>
+    <h1>Your Calling Team,<br/>Now Powered by<br/><span class="green">AI.</span></h1>
+    <p class="hero-sub">AI handles outbound calling 24×7 — onboarding partners, qualifying leads, driving activations — in Hindi and regional languages, at a fraction of your current cost.</p>
+    <div class="hero-btns">
+      <a href="#calculator" class="btn-primary">📊 Calculate My Savings</a>
+      <a href="#demo"       class="btn-secondary">📞 Hear the AI Live</a>
+    </div>
+
+  </div>
+</section>
+
+
+
+<!-- ══ FEATURES ══ -->
+<section class="section" id="features">
+  <span class="stag r">What GroMo AI Delivers</span>
+  <h2 class="r">Human conversations.<br/><span class="green">Machine-level scale.</span></h2>
+  <p class="sub r">Your AI voice agent works round the clock — never misses a lead, never has a bad day, costs 97% less than a human calling team.</p>
+  <div class="feat-grid">
+    <div class="feat-card r"><span class="fi">📞</span><h3>Unlimited Outbound Calls</h3><p>Dial your entire partner base simultaneously. No queue, no wait — every lead touched at the perfect moment.</p></div>
+    <div class="feat-card r"><span class="fi">🇮🇳</span><h3>Hindi + Regional Languages</h3><p>Speaks fluent Hindi, Tamil, Bengali, Marathi and more. Switches language mid-call based on partner preference.</p></div>
+    <div class="feat-card r"><span class="fi">⚡</span><h3>60-Second Drop-off Callback</h3><p>AI fires a follow-up call the instant a partner drops from onboarding — maximising your activation rate.</p></div>
+    <div class="feat-card r"><span class="fi">🔗</span><h3>CRM & CleverTap Sync</h3><p>Pushes call outcomes, intent signals, and partner status directly into your stack — zero manual logging.</p></div>
+    <div class="feat-card r"><span class="fi">🤝</span><h3>Seamless Human Handoff</h3><p>When a partner needs human touch, AI transfers live with full context — no experience drop for the partner.</p></div>
+    <div class="feat-card r"><span class="fi">📊</span><h3>Real-time Call Analytics</h3><p>Track connect rates, objections, intent signals and conversions across every campaign in real time.</p></div>
+  </div>
+  <div class="kpi-row">
+    <div class="kpi-cell r"><span class="kpi-big">80%</span><span class="kpi-label">Higher conversion vs. human calling</span></div>
+    <div class="kpi-cell r"><span class="kpi-big">15×</span><span class="kpi-label">More leads reached per day</span></div>
+    <div class="kpi-cell r"><span class="kpi-big">10+</span><span class="kpi-label">Regional Languages Call Support</span></div>
+    <div class="kpi-cell r"><span class="kpi-big">24/7</span><span class="kpi-label">Always on, zero downtime</span></div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══ CALL DEMO ══ -->
+<div class="demo-bg" id="demo">
+  <div class="demo-inner">
+    <div class="demo-layout">
+      <div>
+        <span class="stag r">Hear the AI in Action</span>
+        <h2 class="r">Real calls.<br/><span class="green">Real conversations.</span></h2>
+        <p class="r" style="font-size:15px;color:var(--muted);line-height:1.75;margin-bottom:0;">Listen to actual AI calling demos — partner onboarding, re-engagement, lead qualification — across languages and real-world scenarios.</p>
+        <div class="audio-list">
+
+          <!-- Card 1: Partner Onboarding -->
+          <div class="audio-card r" id="ac1">
+            <button class="play-btn" id="pb1" onclick="playCard(1)" aria-label="Play">
+              <svg class="icon-play" viewBox="0 0 16 16"><path d="M3 2l10 6-10 6z"/></svg>
+              <svg class="icon-pause" viewBox="0 0 16 16"><rect x="3" y="2" width="4" height="12" rx="1"/><rect x="9" y="2" width="4" height="12" rx="1"/></svg>
+            </button>
+            <div class="am">
+              <div class="am-title">Partner Onboarding — Hindi</div>
+              <div class="am-sub">AI walks new partner through KYC &amp; first sale</div>
+            </div>
+            <div class="waveform" id="wf1"></div>
+            <div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px;flex-shrink:0;">
+              <span class="atime admin-only" id="atime1">No file uploaded</span>
+              <label class="admin-only" style="font-size:10px;font-weight:700;color:var(--green-d);cursor:pointer;background:var(--green-lt);border:1px solid var(--green-border);border-radius:5px;padding:3px 8px;white-space:nowrap;">
+                📁 Upload
+                <input type="file" accept="audio/*" style="display:none;" onchange="loadAudio(1, this)"/>
+              </label>
+            </div>
+            <audio id="aud1"></audio>
+          </div>
+
+          <!-- Card 2: Credit Card Lead Qualification -->
+          <div class="audio-card r" id="ac2">
+            <button class="play-btn" id="pb2" onclick="playCard(2)" aria-label="Play">
+              <svg class="icon-play" viewBox="0 0 16 16"><path d="M3 2l10 6-10 6z"/></svg>
+              <svg class="icon-pause" viewBox="0 0 16 16"><rect x="3" y="2" width="4" height="12" rx="1"/><rect x="9" y="2" width="4" height="12" rx="1"/></svg>
+            </button>
+            <div class="am">
+              <div class="am-title">Credit Card Lead Qualification</div>
+              <div class="am-sub">AI qualifies income, employment &amp; eligibility</div>
+            </div>
+            <div class="waveform" id="wf2"></div>
+            <div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px;flex-shrink:0;">
+              <span class="atime admin-only" id="atime2">No file uploaded</span>
+              <label class="admin-only" style="font-size:10px;font-weight:700;color:var(--green-d);cursor:pointer;background:var(--green-lt);border:1px solid var(--green-border);border-radius:5px;padding:3px 8px;white-space:nowrap;">
+                📁 Upload
+                <input type="file" accept="audio/*" style="display:none;" onchange="loadAudio(2, this)"/>
+              </label>
+            </div>
+            <audio id="aud2"></audio>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Call box -->
+      <div class="call-box r">
+        <div class="phone-ring">📱</div>
+        <h3>Talk to AI Live</h3>
+        <p>Call our demo number right now. Speak in Hindi or English — experience the AI handle real questions about the HDFC Pixel Card.</p>
+        <span class="phone-num">+91 80357 36811</span>
+        <a href="tel:+918035736811" class="btn-primary" style="display:flex;align-items:center;justify-content:center;gap:8px;width:100%;">📞 Call the AI Now</a>
+        <button onclick="openBooking()" class="btn-secondary" style="display:flex;align-items:center;justify-content:center;gap:8px;width:100%;margin-top:10px;font-family:var(--font);">🗓 Book a Pilot</button>
+        <div class="call-steps">
+          <div class="cs"><span class="cs-num">1</span>Dial the number above</div>
+          <div class="cs"><span class="cs-num">2</span>Speak naturally — Hindi or English</div>
+          <div class="cs"><span class="cs-num">3</span>Ask anything about the HDFC Pixel Card</div>
+          <div class="cs"><span class="cs-num">4</span>Watch AI handle objections in real time</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ BOOKING MODAL ══ -->
+<div id="bookingModal" style="display:none;position:fixed;inset:0;z-index:1000;background:rgba(10,34,64,0.55);backdrop-filter:blur(4px);overflow-y:auto;padding:24px 16px;">
+  <div style="background:#fff;border-radius:20px;max-width:560px;margin:0 auto;box-shadow:0 24px 80px rgba(10,34,64,0.2);overflow:hidden;">
+
+    <!-- Header -->
+    <div style="background:linear-gradient(135deg,#1DB954,#0F8237);padding:28px 32px;position:relative;">
+      <button onclick="closeBooking()" style="position:absolute;top:16px;right:18px;background:rgba(255,255,255,0.2);border:none;color:#fff;font-size:18px;width:32px;height:32px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;">✕</button>
+      <div style="font-size:11px;font-weight:700;letter-spacing:2px;color:rgba(255,255,255,0.75);text-transform:uppercase;margin-bottom:6px;">Schedule a Meeting</div>
+      <div style="font-size:20px;font-weight:800;color:#fff;">Book a 30-min Discussion</div>
+      <div style="font-size:13px;color:rgba(255,255,255,0.8);margin-top:4px;">Mon–Fri &nbsp;|&nbsp; 10:00 AM – 6:30 PM IST</div>
+    </div>
+
+    <div style="padding:28px 32px;" id="bookingBody">
+
+      <!-- Step 1: Pick Date -->
+      <div id="step1">
+        <div style="font-size:13px;font-weight:700;color:#4A6A4A;margin-bottom:14px;">① Select a Date</div>
+        <div id="datePicker" style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:24px;"></div>
+
+        <div style="font-size:13px;font-weight:700;color:#4A6A4A;margin-bottom:14px;">② Select a Time Slot</div>
+        <div id="slotPicker" style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:24px;"></div>
+
+        <button onclick="goStep2()" id="nextBtn" style="width:100%;background:var(--green,#1DB954);color:#fff;font-weight:700;font-size:15px;padding:13px;border-radius:9px;border:none;cursor:pointer;opacity:0.5;" disabled>Continue →</button>
+      </div>
+
+      <!-- Step 2: Fill Details -->
+      <div id="step2" style="display:none;">
+        <button onclick="goStep1()" style="background:none;border:none;color:#6B866B;font-size:13px;cursor:pointer;margin-bottom:16px;padding:0;">← Back</button>
+        <div id="selectedSlotDisplay" style="background:#F0FAF2;border:1.5px solid #B6DFC3;border-radius:10px;padding:12px 16px;margin-bottom:22px;font-size:13px;font-weight:700;color:#17A347;"></div>
+
+        <div style="font-size:13px;font-weight:700;color:#4A6A4A;margin-bottom:14px;">③ Your Details</div>
+
+        <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:22px;">
+          <div>
+            <label style="font-size:11px;font-weight:700;color:#6B866B;display:block;margin-bottom:4px;">Full Name *</label>
+            <input id="bName" type="text" placeholder="Rahul Sharma" style="width:100%;padding:10px 14px;border:1.5px solid #DDE8DD;border-radius:8px;font-size:14px;font-family:inherit;outline:none;" onfocus="this.style.borderColor='#1DB954'" onblur="this.style.borderColor='#DDE8DD'"/>
+          </div>
+          <div>
+            <label style="font-size:11px;font-weight:700;color:#6B866B;display:block;margin-bottom:4px;">Phone Number *</label>
+            <input id="bPhone" type="tel" placeholder="+91 9XXXXXXXXX" style="width:100%;padding:10px 14px;border:1.5px solid #DDE8DD;border-radius:8px;font-size:14px;font-family:inherit;outline:none;" onfocus="this.style.borderColor='#1DB954'" onblur="this.style.borderColor='#DDE8DD'"/>
+          </div>
+          <div>
+            <label style="font-size:11px;font-weight:700;color:#6B866B;display:block;margin-bottom:4px;">Organisation Name *</label>
+            <input id="bOrg" type="text" placeholder="Acme Pvt. Ltd." style="width:100%;padding:10px 14px;border:1.5px solid #DDE8DD;border-radius:8px;font-size:14px;font-family:inherit;outline:none;" onfocus="this.style.borderColor='#1DB954'" onblur="this.style.borderColor='#DDE8DD'"/>
+          </div>
+          <div>
+            <label style="font-size:11px;font-weight:700;color:#6B866B;display:block;margin-bottom:4px;">Email Address *</label>
+            <input id="bEmail" type="email" placeholder="you@company.com" style="width:100%;padding:10px 14px;border:1.5px solid #DDE8DD;border-radius:8px;font-size:14px;font-family:inherit;outline:none;" onfocus="this.style.borderColor='#1DB954'" onblur="this.style.borderColor='#DDE8DD'"/>
+          </div>
+        </div>
+
+        <div id="ejsError" style="display:none;background:#FEE2E2;border:1.5px solid #DC2626;border-radius:8px;padding:10px 14px;font-size:12px;color:#DC2626;margin-bottom:12px;"></div>
+        <button onclick="submitBooking()" style="width:100%;background:#1DB954;color:#fff;font-weight:700;font-size:15px;padding:13px;border-radius:9px;border:none;cursor:pointer;">✅ Confirm Booking</button>
+        <p style="font-size:11px;color:#96AE96;text-align:center;margin-top:10px;">Confirmation will be sent to your email &amp; our team.</p>
+      </div>
+
+      <!-- Step 3: Confirmed -->
+      <div id="step3" style="display:none;text-align:center;padding:20px 0;">
+        <div style="font-size:52px;margin-bottom:16px;">🎉</div>
+        <div style="font-size:20px;font-weight:800;color:#1A2E1A;margin-bottom:8px;">Meeting Confirmed!</div>
+        <div id="confirmText" style="font-size:14px;color:#6B866B;line-height:1.7;margin-bottom:22px;"></div>
+        <div style="background:#F0FAF2;border:1.5px solid #B6DFC3;border-radius:10px;padding:14px;font-size:12px;color:#4A6A4A;margin-bottom:20px;">📧 A confirmation email has been sent to your inbox and to our team.</div>
+        <button onclick="closeBooking()" style="background:#1DB954;color:#fff;font-weight:700;font-size:14px;padding:11px 32px;border-radius:9px;border:none;cursor:pointer;">Done</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ══ CALCULATOR ══ -->
+<div class="calc-bg" id="calculator">
+  <div class="calc-inner">
+    <div class="calc-header">
+      <span class="stag r">ROI Calculator</span>
+      <h2 class="r">How much will you <span class="green">save with AI?</span></h2>
+      <p class="sub r">Enter your team details — just like a home loan EMI calculator — and see your exact monthly savings instantly.</p>
+    </div>
+
+    <div class="calc-card r">
+      <!-- INPUTS -->
+      <div class="ci">
+        <div class="ci-head">
+          <h3>⚙️ Your Calling Operation</h3>
+          <span class="badge">Adjust Sliders</span>
+        </div>
+
+        <!-- Slider 1: Employees -->
+        <div class="sg">
+          <div class="sg-top">
+            <span class="sg-label">👥 Sales Manpower</span>
+            <div class="sg-val-wrap">
+              <input class="sg-input" type="number" id="ve" value="50" min="1" max="3000"/>
+              <span class="sg-unit">Employees</span>
+            </div>
+          </div>
+          <div class="sl-track">
+            <div class="sl-bg"><div class="sl-fill" id="fe"></div></div>
+            <input type="range" id="re" min="1" max="3000" value="50"/>
+          </div>
+          <div class="sl-limits"><span>1</span><span>3,000 employees</span></div>
+        </div>
+
+        <!-- Slider 2: Hours -->
+        <div class="sg">
+          <div class="sg-top">
+            <span class="sg-label">🕐 Daily Talktime / Employee</span>
+            <div class="sg-val-wrap">
+              <input class="sg-input" type="number" id="vh" value="2" min="1" max="6" step="0.5"/>
+              <span class="sg-unit">Hrs / Day</span>
+            </div>
+          </div>
+          <div class="sl-track">
+            <div class="sl-bg"><div class="sl-fill" id="fh"></div></div>
+            <input type="range" id="rh" min="1" max="6" value="2" step="0.5"/>
+          </div>
+          <div class="sl-limits"><span>1 hr</span><span>6 hrs</span></div>
+        </div>
+
+        <!-- Slider 3: Days -->
+        <div class="sg">
+          <div class="sg-top">
+            <span class="sg-label">📅 Working Days / Month</span>
+            <div class="sg-val-wrap">
+              <input class="sg-input" type="number" id="vd" value="22" min="1" max="31"/>
+              <span class="sg-unit">Days</span>
+            </div>
+          </div>
+          <div class="sl-track">
+            <div class="sl-bg"><div class="sl-fill" id="fd"></div></div>
+            <input type="range" id="rd" min="1" max="31" value="22"/>
+          </div>
+          <div class="sl-limits"><span>1</span><span>31 days</span></div>
+        </div>
+
+        <div style="height:1.5px;background:var(--light-border);margin:8px 0 22px;"></div>
+
+        <div class="formula">
+          <strong>Cost Formula</strong>
+          <div style="margin-top:10px;display:flex;flex-direction:column;gap:10px;">
+            <div style="background:#F0FAF2;border-radius:8px;padding:10px 14px;border-left:3px solid var(--green);">
+              <div style="font-size:10px;font-weight:700;color:var(--green-d);text-transform:uppercase;letter-spacing:.8px;margin-bottom:4px;">🤖 AI Calling Cost</div>
+              <div style="color:var(--ink);font-size:12px;">
+                <span class="fv" id="fbe">50</span> emp &nbsp;×&nbsp;
+                <span class="fv" id="fbh">2</span> hrs &nbsp;×&nbsp;
+                <span class="fv" id="fbd">22</span> days &nbsp;×&nbsp;
+                60 min &nbsp;×&nbsp; <strong style="color:var(--green-d);">₹8/min</strong>
+              </div>
+            </div>
+            <div style="background:#FEF2F2;border-radius:8px;padding:10px 14px;border-left:3px solid var(--red);">
+              <div style="font-size:10px;font-weight:700;color:var(--red);text-transform:uppercase;letter-spacing:.8px;margin-bottom:4px;">👤 Human Team Cost</div>
+              <div style="color:var(--ink);font-size:12px;">
+                <span class="fv2" id="fbe2">50</span> emp &nbsp;×&nbsp; <strong style="color:var(--red);">₹30,000/month</strong>
+              </div>
+              <div style="font-size:10px;color:var(--muted);margin-top:5px;line-height:1.6;">
+                Includes: Salary · Incentives · TL/Manager Cost · Training · Hiring · Retention · Overheads
+              </div>
+            </div>
+          </div>
+        </div>
+        <p class="disclaimer">* AI cost calculated at ₹8/min of talk time. Human cost of ₹30,000/employee/month covers seat cost, incentives, TL/manager cost, training, hiring, retention and all associated overheads. Results are indicative.</p>
+      </div>
+
+      <!-- RESULTS -->
+      <div class="cr">
+        <h3>💰 Monthly Cost Comparison</h3>
+
+        <div class="chart-wrap">
+          <canvas id="donut" width="164" height="164"></canvas>
+          <div class="chart-mid">
+            <div class="cpct" id="cpct">96.5%</div>
+            <div class="clbl">Savings</div>
+          </div>
+        </div>
+        <div class="leg">
+          <div class="leg-i"><div class="ld g"></div>AI Cost</div>
+          <div class="leg-i"><div class="ld r"></div>Human Cost</div>
+        </div>
+
+        <div class="rb g">
+          <div class="rb-lft">
+            <div class="rb-tag">🤖 AI Calling Cost</div>
+            <div class="rb-note">Total: <strong id="tot-h">3,96,000</strong> mins/month @ ₹8/min</div>
+          </div>
+          <div class="rb-amt"><span class="rs">₹</span><span id="ai-n">52,800</span></div>
+        </div>
+
+        <div class="rb r">
+          <div class="rb-lft">
+            <div class="rb-tag">👤 Current Human Cost</div>
+            <div class="rb-note">₹30,000 × <strong id="emp-c">50</strong> employees</div>
+          </div>
+          <div class="rb-amt"><span class="rs">₹</span><span id="hum-n">15,00,000</span></div>
+        </div>
+
+        <div class="sav-box">
+          <div class="sav-tag">💚 Your Monthly Savings with GroMo AI</div>
+          <div class="sav-big" id="sav-big">₹14,47,200</div>
+          <div class="sav-note">Cost reduction: <strong id="sav-p">96.5%</strong> every month</div>
+        </div>
+
+        <div class="cta-calc">
+          <a href="#" onclick="event.preventDefault();openBooking()" class="btn-primary">Start Saving — Book a Pilot →</a>
+          <a href="#demo" class="btn-secondary">📞 Hear the AI First</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ HOW IT WORKS ══ -->
+<div class="how-bg" id="how">
+  <section class="section">
+    <span class="stag r">How It Works</span>
+    <h2 class="r">Live in <span class="green">5 days.</span> Scaled in 2 days.</h2>
+    <p class="sub r">From kickoff to your first AI calling campaign — a simple 4-step process, zero disruption to your current stack.</p>
+    <div class="steps-row">
+      <div class="step r"><div class="s-circle">01</div><h4>Share Call Flows</h4><p>Upload sample recordings and define your onboarding or qualification script. That's all we need.</p></div>
+      <div class="step r"><div class="s-circle">02</div><h4>Train the AI</h4><p>We fine-tune the voice agent on GroMo's products, tone, and partner language preferences.</p></div>
+      <div class="step r"><div class="s-circle">03</div><h4>Integrate & Test</h4><p>Plug into your dialer, CleverTap and CRM. Run test calls with your team before go-live.</p></div>
+      <div class="step r"><div class="s-circle">04</div><h4>Go Live & Scale</h4><p>Launch to 100% of your lead base. Monitor real-time dashboards. Scale calling on demand.</p></div>
+    </div>
+  </section>
+</div>
+
+<div class="divider"></div>
+
+<!-- ══ TESTIMONIALS ══ -->
+<section class="section" id="testimonials">
+  <span class="stag r">What Sales Leaders Say</span>
+  <h2 class="r">Loved by <span class="green">Sales Teams</span></h2>
+  <div class="testi-grid">
+    <div class="tcard r"><div class="stars">★★★★★</div><p class="qt">We replaced our 30-person calling team in 3 weeks. Connect rates went up, costs dropped significantly. I didn't believe it until I saw the numbers myself.</p><div class="tfoot"><div class="av">RK</div><div><div class="av-name">Rohit Kumar</div><div class="av-role">Regional Sales Head</div></div></div></div>
+    <div class="tcard r"><div class="stars">★★★★★</div><p class="qt">The Hindi switching is seamless. Our semi-urban partners feel genuinely understood — that's been the biggest driver of our activation rate improvement.</p><div class="tfoot"><div class="av">PM</div><div><div class="av-name">Priya Mehra</div><div class="av-role">Training & Academy Lead</div></div></div></div>
+    <div class="tcard r"><div class="stars">★★★★★</div><p class="qt">The 60-second drop-off callback alone boosted activations by 28% in month one. Missed follow-ups were killing our funnel — AI fixed that completely.</p><div class="tfoot"><div class="av">AS</div><div><div class="av-name">Amit Singh</div><div class="av-role">Operations Manager</div></div></div></div>
+  </div>
+</section>
+
+<!-- ══ CTA ══ -->
+<div style="position:relative;z-index:2;">
+  <div class="cta-section">
+    <div class="cta-box">
+      <h2>Cut calling costs starting this month.</h2>
+      <p>Free pilot. No upfront cost. No commitment. See AI handle your actual call flows.</p>
+      <div class="btns">
+        <a href="#calculator" class="btn-white">📊 Calculate My Savings</a>
+        <a href="#demo"       class="btn-white-outline">📞 Hear the AI Live</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div>
+    <img src="https://gromo.in/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FgromoLogo.b40b1e45.webp&w=256&q=75" alt="GroMo"/>
+    <p class="foot-copy">© 2025 GroMo. Empowering 60L+ financial partners across India.</p>
+  </div>
+  <div class="foot-links">
+    <a href="#">Privacy Policy</a>
+    <a href="#">Terms of Service</a>
+    <a href="/cdn-cgi/l/email-protection#2c4d456c4b5e434143024542"><span class="__cf_email__" data-cfemail="fb9a92bb9c89949694d59295">[email&#160;protected]</span></a>
+  </div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+/* ─── Admin mode — activated via ?admin=gromo2026 ─── */
+(function() {
+  const params = new URLSearchParams(window.location.search);
+  if (params.get('admin') === 'gromo2026') {
+    document.body.classList.add('admin-mode');
+    // Show a subtle indicator so you know admin mode is on
+    const banner = document.createElement('div');
+    banner.style.cssText = 'position:fixed;bottom:16px;right:16px;z-index:9999;background:#0F8237;color:#fff;font-size:11px;font-weight:700;padding:6px 14px;border-radius:20px;letter-spacing:.5px;box-shadow:0 4px 12px rgba(0,0,0,0.2);';
+    banner.textContent = '🔒 Admin Mode';
+    document.body.appendChild(banner);
+  }
+})();
+
+/* ─── Mobile nav ─── */
+function toggleNav() {
+  document.getElementById('navLinks').classList.toggle('open');
+}
+function closeNav() {
+  document.getElementById('navLinks').classList.remove('open');
+}
+
+/* ─── Waveform bars ─── */
+['wf1','wf2'].forEach(id => {
+  const el = document.getElementById(id);
+  el.innerHTML = Array.from({length:26}, () =>
+    `<div class="b" style="height:${Math.random()*16+4}px"></div>`).join('');
+});
+
+/* ─── Real audio playback for uploaded files ─── */
+const audioSrcs = {1: null, 2: null};
+const waveIntervals = {};
+
+function fmtDur(s) {
+  const m = Math.floor(s/60), sec = Math.floor(s%60);
+  return m+':'+(sec<10?'0':'')+sec;
+}
+
+function loadAudio(n, input) {
+  const file = input.files[0];
+  if (!file) return;
+  const url = URL.createObjectURL(file);
+  audioSrcs[n] = url;
+  const aud = document.getElementById('aud'+n);
+  aud.src = url;
+  aud.onloadedmetadata = () => {
+    document.getElementById('atime'+n).textContent = fmtDur(aud.duration);
+  };
+  aud.onended = () => stopCard(n);
+  // show ready state
+  document.getElementById('ac'+n).style.borderColor = 'var(--green)';
+}
+
+function playCard(n) {
+  const aud = document.getElementById('aud'+n);
+  const pb  = document.getElementById('pb'+n);
+  const ac  = document.getElementById('ac'+n);
+  const wf  = 'wf'+n;
+
+  if (!audioSrcs[n]) {
+    alert('Please upload an audio file first using the 📁 Upload button.');
+    return;
+  }
+
+  if (!aud.paused) {
+    // pause
+    aud.pause();
+    pb.classList.remove('playing');
+    ac.classList.remove('active');
+    stopWaveAnim(wf);
+  } else {
+    // stop any other playing card
+    [1,2].forEach(i => { if (i !== n) stopCard(i); });
+    aud.play();
+    pb.classList.add('playing');
+    ac.classList.add('active');
+    startWaveAnim(wf);
+  }
+}
+
+function stopCard(n) {
+  const aud = document.getElementById('aud'+n);
+  if (aud) { aud.pause(); aud.currentTime = 0; }
+  const pb = document.getElementById('pb'+n);
+  const ac = document.getElementById('ac'+n);
+  if (pb) pb.classList.remove('playing');
+  if (ac) ac.classList.remove('active');
+  stopWaveAnim('wf'+n);
+}
+
+function startWaveAnim(wfId) {
+  const bars = document.getElementById(wfId).querySelectorAll('.b');
+  waveIntervals[wfId] = setInterval(()=>{
+    bars.forEach(b => { b.style.height=(Math.random()*18+4)+'px'; b.classList.toggle('lit', Math.random()>.45); });
+  }, 100);
+}
+
+function stopWaveAnim(wfId) {
+  clearInterval(waveIntervals[wfId]);
+  const el = document.getElementById(wfId);
+  if (el) el.querySelectorAll('.b').forEach(b => { b.classList.remove('lit'); b.style.height=(Math.random()*16+4)+'px'; });
+}
+
+/* ─── Slider sync ─── */
+function link(rid, vid, fid) {
+  const r=document.getElementById(rid), v=document.getElementById(vid), f=document.getElementById(fid);
+  const fill=()=>{ f.style.width=((r.value-r.min)/(r.max-r.min)*100)+'%'; };
+  r.addEventListener('input',()=>{ v.value=r.value; fill(); calc(); });
+  v.addEventListener('input',()=>{ let n=parseFloat(v.value); if(isNaN(n))return; n=Math.min(Math.max(n,+r.min),+r.max); r.value=n; fill(); calc(); });
+  fill();
+}
+link('re','ve','fe'); link('rh','vh','fh'); link('rd','vd','fd');
+
+/* ─── Donut ─── */
+function drawDonut(ai, hum) {
+  const c = document.getElementById('donut').getContext('2d');
+  const W=164, cx=82, cy=82, R=72, r=52, total=ai+hum||1;
+  const a = (ai/total)*Math.PI*2;
+  c.clearRect(0,0,W,W);
+  // BG circle
+  c.beginPath(); c.arc(cx,cy,R,0,Math.PI*2); c.fillStyle='#FEE2E2'; c.fill();
+  // AI arc (green)
+  c.beginPath(); c.moveTo(cx,cy); c.arc(cx,cy,R,-Math.PI/2,-Math.PI/2+a); c.closePath(); c.fillStyle='#1DB954'; c.fill();
+  // Human arc (red) — just re-fill remainder
+  c.beginPath(); c.moveTo(cx,cy); c.arc(cx,cy,R,-Math.PI/2+a,-Math.PI/2+Math.PI*2); c.closePath(); c.fillStyle='#DC2626'; c.fill();
+  // hole
+  c.beginPath(); c.arc(cx,cy,r,0,Math.PI*2); c.fillStyle='#FAFCFA'; c.fill();
+  // divider
+  c.beginPath(); c.moveTo(cx, cy-R); c.lineTo(cx, cy-r); c.strokeStyle='#FAFCFA'; c.lineWidth=3; c.stroke();
+}
+
+/* ─── Formatter ─── */
+const fmt = n => Math.round(n).toLocaleString('en-IN');
+let pAI=0, pHum=0;
+function animN(el, from, to, dur) {
+  const s=performance.now();
+  (function go(now) {
+    const t=Math.min((now-s)/dur,1), e=1-Math.pow(1-t,3);
+    el.textContent=fmt(Math.round(from+(to-from)*e));
+    if(t<1) requestAnimationFrame(go);
+  })(s);
+}
+
+/* ─── Calculate ─── */
+function calc() {
+  const emp=parseFloat(document.getElementById('ve').value)||0;
+  const hrs=parseFloat(document.getElementById('vh').value)||0;
+  const days=parseFloat(document.getElementById('vd').value)||0;
+  const totH=emp*hrs*days;
+  const totM=Math.round(totH*60);
+  const aiC=Math.round(totM*8);
+  const humC=Math.round(emp*30000);
+  const sav=Math.max(humC-aiC,0);
+  const pct=humC>0?((sav/humC)*100).toFixed(1):'0.0';
+
+  animN(document.getElementById('ai-n'), pAI, aiC, 380);
+  animN(document.getElementById('hum-n'), pHum, humC, 380);
+  pAI=aiC; pHum=humC;
+  setTimeout(()=>{ document.getElementById('sav-big').textContent='₹'+fmt(sav); },400);
+
+  document.getElementById('tot-h').textContent=fmt(totM);
+  document.getElementById('emp-c').textContent=emp;
+  document.getElementById('cpct').textContent=pct+'%';
+  document.getElementById('sav-p').textContent=pct+'%';
+  document.getElementById('fbe').textContent=emp;
+  document.getElementById('fbh').textContent=hrs;
+  document.getElementById('fbd').textContent=days;
+  document.getElementById('fbe2').textContent=emp;
+  drawDonut(aiC, humC-aiC);
+}
+calc();
+
+/* ─── BOOKING MODAL ─── */
+let selDate = null, selSlot = null;
+const OWNER_EMAIL = 'yogesh.sehgal@gromo.in';
+const DAYS = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+function openBooking() {
+  document.getElementById('bookingModal').style.display = 'block';
+  document.body.style.overflow = 'hidden';
+  buildDatePicker();
+  showStep(1);
+}
+function closeBooking() {
+  document.getElementById('bookingModal').style.display = 'none';
+  document.body.style.overflow = '';
+  selDate = null; selSlot = null;
+}
+function showStep(n) {
+  [1,2,3].forEach(i => document.getElementById('step'+i).style.display = i===n?'block':'none');
+}
+function goStep1() { showStep(1); }
+function goStep2() {
+  if (!selDate || !selSlot) return;
+  document.getElementById('selectedSlotDisplay').textContent =
+    'Date: ' + selDate.label + '  |  Time: ' + selSlot;
+  showStep(2);
+}
+
+function buildDatePicker() {
+  const dp = document.getElementById('datePicker');
+  dp.innerHTML = '';
+  selDate = null; selSlot = null;
+  const today = new Date();
+  let added = 0;
+  for (let i = 1; i <= 14 && added < 8; i++) {
+    const d = new Date(today);
+    d.setDate(today.getDate() + i);
+    if (d.getDay() === 0 || d.getDay() === 6) continue;
+    const label = DAYS[d.getDay()] + ', ' + d.getDate() + ' ' + MONTHS[d.getMonth()];
+    const iso = d.toISOString().split('T')[0];
+    const btn = document.createElement('button');
+    btn.textContent = label;
+    btn.dataset.iso = iso;
+    btn.dataset.label = label;
+    btn.style.cssText = 'padding:10px 6px;border:1.5px solid #DDE8DD;border-radius:9px;background:#fff;font-size:12px;font-weight:600;color:#344D34;cursor:pointer;transition:all .15s;';
+    btn.onclick = function() {
+      document.querySelectorAll('#datePicker button').forEach(b => {
+        b.style.background='#fff'; b.style.borderColor='#DDE8DD'; b.style.color='#344D34';
+      });
+      this.style.background='#1DB954'; this.style.borderColor='#1DB954'; this.style.color='#fff';
+      selDate = {iso: this.dataset.iso, label: this.dataset.label};
+      buildSlots();
+      checkNext();
+    };
+    dp.appendChild(btn);
+    added++;
+  }
+}
+
+function buildSlots() {
+  const sp = document.getElementById('slotPicker');
+  sp.innerHTML = '';
+  for (let h = 10; h <= 18; h++) {
+    for (let m = 0; m < 60; m += 30) {
+      if (h === 18 && m > 0) break;
+      const hh = h > 12 ? h - 12 : h;
+      const ampm = h >= 12 ? 'PM' : 'AM';
+      const mm = m === 0 ? '00' : '30';
+      const label = hh + ':' + mm + ' ' + ampm;
+      const btn = document.createElement('button');
+      btn.textContent = label;
+      btn.style.cssText = 'padding:9px 4px;border:1.5px solid #DDE8DD;border-radius:8px;background:#fff;font-size:12px;font-weight:600;color:#344D34;cursor:pointer;transition:all .15s;';
+      btn.onclick = function() {
+        document.querySelectorAll('#slotPicker button').forEach(b => {
+          b.style.background='#fff'; b.style.borderColor='#DDE8DD'; b.style.color='#344D34';
+        });
+        this.style.background='#1DB954'; this.style.borderColor='#1DB954'; this.style.color='#fff';
+        selSlot = this.textContent;
+        checkNext();
+      };
+      sp.appendChild(btn);
+    }
+  }
+}
+
+function checkNext() {
+  const btn = document.getElementById('nextBtn');
+  if (selDate && selSlot) {
+    btn.disabled = false; btn.style.opacity = '1';
+  } else {
+    btn.disabled = true; btn.style.opacity = '0.5';
+  }
+}
+
+
+function submitBooking() {
+  try {
+    var name  = document.getElementById('bName').value.trim();
+    var phone = document.getElementById('bPhone').value.trim();
+    var org   = document.getElementById('bOrg').value.trim();
+    var email = document.getElementById('bEmail').value.trim();
+
+    if (!name || !phone || !org || !email) { alert('Please fill in all fields.'); return; }
+    if (!/\S+@\S+\.\S+/.test(email)) { alert('Please enter a valid email address.'); return; }
+    if (!selDate || !selSlot) { alert('Please select a date and time slot.'); return; }
+
+    var bookedDate = selDate.label;
+    var bookedSlot = selSlot;
+
+    // Find confirm button safely
+    var confirmBtn = null;
+    var btns = document.querySelectorAll('#step2 button');
+    for (var i = 0; i < btns.length; i++) {
+      if (btns[i].textContent.indexOf('Confirm') !== -1) { confirmBtn = btns[i]; break; }
+    }
+    if (confirmBtn) { confirmBtn.textContent = 'Sending...'; confirmBtn.disabled = true; }
+
+    // Hide any previous error
+    var errDiv = document.getElementById('ejsError');
+    if (errDiv) errDiv.style.display = 'none';
+
+    var params = {
+      to_name:  name,
+      to_email: email,
+      phone:    phone,
+      org:      org,
+      date:     bookedDate,
+      time:     bookedSlot + ' IST',
+      reply_to: email
+    };
+
+    console.log('EmailJS send →', EJS_SERVICE_ID, EJS_TEMPLATE_ID, params);
+
+    emailjs.send(EJS_SERVICE_ID, EJS_TEMPLATE_ID, params)
+      .then(function(res) {
+        console.log('EmailJS OK:', res.status, res.text);
+        closeBooking();
+        showSuccessToast(name, bookedDate, bookedSlot, email);
+      })
+      .catch(function(err) {
+        console.error('EmailJS error:', JSON.stringify(err));
+        if (confirmBtn) { confirmBtn.textContent = '✅ Confirm Booking'; confirmBtn.disabled = false; }
+        var msg = (err && err.text) ? err.text : JSON.stringify(err);
+        if (errDiv) { errDiv.textContent = '⚠️ Could not send email: ' + msg; errDiv.style.display = 'block'; }
+        else { alert('Email error: ' + msg); }
+      });
+
+  } catch(e) {
+    console.error('submitBooking crash:', e.message, e.stack);
+    alert('Error: ' + e.message);
+  }
+}
+
+
+function showSuccessToast(name, date, slot, email) {
+  const toast = document.getElementById('successToast');
+  document.getElementById('toastName').textContent = name;
+  document.getElementById('toastDate').textContent = date + ' at ' + slot + ' IST';
+  document.getElementById('toastEmail').textContent = email;
+  toast.style.display = 'flex';
+  // Auto-hide after 10 seconds
+  setTimeout(function() { toast.style.opacity = '0'; setTimeout(function(){ toast.style.display='none'; toast.style.opacity='1'; }, 500); }, 10000);
+}
+
+document.getElementById('bookingModal').addEventListener('click', function(e) {
+  if (e.target === this) closeBooking();
+});
+
+</script>
+<!-- ══ SUCCESS TOAST ══ -->
+<div id="successToast" style="display:none;position:fixed;inset:0;z-index:2000;background:rgba(10,34,64,0.45);backdrop-filter:blur(4px);align-items:center;justify-content:center;padding:20px;">
+  <div style="background:#fff;border-radius:20px;max-width:420px;width:100%;padding:40px 32px;text-align:center;box-shadow:0 24px 80px rgba(10,34,64,0.25);animation:fadeUp .4s ease both;">
+    <div style="font-size:56px;margin-bottom:16px;">🎉</div>
+    <div style="font-size:22px;font-weight:800;color:#1A2E1A;margin-bottom:10px;">Meeting Confirmed!</div>
+    <div style="font-size:15px;color:#6B866B;line-height:1.7;margin-bottom:20px;">
+      Hi <strong id="toastName" style="color:#1A2E1A;"></strong>, your 30-min meeting is booked for<br/>
+      <strong id="toastDate" style="color:#1DB954;font-size:16px;"></strong>
+    </div>
+    <div style="background:#F0FAF2;border:1.5px solid #B6DFC3;border-radius:10px;padding:14px 16px;font-size:13px;color:#4A6A4A;margin-bottom:24px;line-height:1.6;">
+      📧 A confirmation will be sent to<br/><strong id="toastEmail"></strong>
+    </div>
+    <button onclick="document.getElementById('successToast').style.display='none'" style="background:#1DB954;color:#fff;font-weight:700;font-size:15px;padding:12px 40px;border-radius:9px;border:none;cursor:pointer;width:100%;">Done ✓</button>
+  </div>
+</div>
+
+</body>
+</html>
