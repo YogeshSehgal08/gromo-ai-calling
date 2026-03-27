@@ -964,7 +964,7 @@ footer img { height: 28px; object-fit: contain; }
         </div>
 
         <div class="cta-calc">
-          <a href="#" class="btn-primary">Start Saving — Book a Pilot →</a>
+          <a href="#" onclick="event.preventDefault();openBooking()" class="btn-primary">Start Saving — Book a Pilot →</a>
           <a href="#demo" class="btn-secondary">📞 Hear the AI First</a>
         </div>
       </div>
@@ -1293,6 +1293,7 @@ function checkNext() {
   }
 }
 
+
 function submitBooking() {
   const name  = document.getElementById('bName').value.trim();
   const phone = document.getElementById('bPhone').value.trim();
@@ -1301,34 +1302,37 @@ function submitBooking() {
   if (!name || !phone || !org || !email) { alert('Please fill in all fields.'); return; }
   if (!/\S+@\S+\.\S+/.test(email)) { alert('Please enter a valid email address.'); return; }
 
-  const confirmBtn = document.querySelector('#step2 button:last-of-type');
-  confirmBtn.textContent = 'Sending...';
-  confirmBtn.disabled = true;
+  // Save values NOW before closeBooking() wipes selDate/selSlot
+  const bookedDate = selDate.label;
+  const bookedSlot = selSlot;
+
+  const confirmBtn = document.querySelector('#step2 button[onclick="submitBooking()"]');
+  if (confirmBtn) { confirmBtn.textContent = 'Sending...'; confirmBtn.disabled = true; }
 
   const templateParams = {
     to_name:  name,
     to_email: email,
     phone:    phone,
     org:      org,
-    date:     selDate.label,
-    time:     selSlot + ' IST',
+    date:     bookedDate,
+    time:     bookedSlot + ' IST',
     reply_to: email
   };
 
   emailjs.send(EJS_SERVICE_ID, EJS_TEMPLATE_ID, templateParams)
-    .then(function() {
+    .then(function(res) {
+      console.log('EmailJS OK:', res.status);
       closeBooking();
-      showSuccessToast(name, selDate.label, selSlot, email);
+      showSuccessToast(name, bookedDate, bookedSlot, email);
     })
     .catch(function(err) {
-      console.error('EmailJS error:', JSON.stringify(err));
-      confirmBtn.textContent = '✅ Confirm Booking';
-      confirmBtn.disabled = false;
-      // Still close and show success to user — you'll follow up manually
+      console.error('EmailJS failed:', JSON.stringify(err));
+      if (confirmBtn) { confirmBtn.textContent = '✅ Confirm Booking'; confirmBtn.disabled = false; }
       closeBooking();
-      showSuccessToast(name, selDate.label, selSlot, email);
+      showSuccessToast(name, bookedDate, bookedSlot, email);
     });
 }
+
 
 function showSuccessToast(name, date, slot, email) {
   const toast = document.getElementById('successToast');
